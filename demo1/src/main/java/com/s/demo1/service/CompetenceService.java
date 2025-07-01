@@ -20,6 +20,7 @@ public class CompetenceService {
     public CompetenceDTO createCompetence(CompetenceDTO dto) {
         Competence competence = new Competence();
         competence.setNom(dto.getNom());
+        competence.setDescription(dto.getDescription());
 
         List<SousCompetence> sousCompetences = dto.getSousCompetences().stream()
                 .map(scDto -> {
@@ -58,6 +59,7 @@ public class CompetenceService {
             return new CompetenceDTO(
                     competence.getId(),
                     competence.getNom(),
+                    competence.getDescription(),
                     sousDtos,
                     isAcquired
             );
@@ -74,8 +76,9 @@ public class CompetenceService {
 
         boolean isAcquired = competence.getSousCompetences().stream().allMatch(SousCompetence::isValidee);
 
-        return new CompetenceDTO(competence.getId(), competence.getNom(), sousDtos, isAcquired);
+        return new CompetenceDTO(competence.getId(), competence.getNom(), competence.getDescription(), sousDtos, isAcquired);
     }
+
 
     public CompetenceDTO updateCompetence(Long id, CompetenceDTO dto) {
         Competence competence = competenceRepository.findById(id)
@@ -91,7 +94,14 @@ public class CompetenceService {
 
         boolean isAcquired = updated.getSousCompetences().stream().allMatch(SousCompetence::isValidee);
 
-        return new CompetenceDTO(updated.getId(), updated.getNom(), sousDtos, isAcquired);
+        return new CompetenceDTO(updated.getId(), updated.getNom(), updated.getDescription(), sousDtos, isAcquired);
+    }
+
+    public void deleteCompetence(Long id) {
+        if (!competenceRepository.existsById(id)) {
+            throw new RuntimeException("Competence not found");
+        }
+        competenceRepository.deleteById(id);
     }
 
 

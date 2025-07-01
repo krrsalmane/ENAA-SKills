@@ -36,4 +36,9 @@ public class CompetenceController {
         return competenceService.updateCompetence(id, dto);
     }
 
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        competenceService.deleteCompetence(id);
+    }
+
 }

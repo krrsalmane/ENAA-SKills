@@ -1,6 +1,4 @@
 package com.s.demo1.DTO;
-
-
 import java.util.List;
 
 
@@ -8,6 +6,7 @@ import java.util.List;
 public class CompetenceDTO {
     private Long id;
     private String nom;
+    private String description;
     private List<SousCompetenceDTO> sousCompetences;
     private boolean acquise;
 
@@ -47,11 +46,21 @@ public class CompetenceDTO {
     public CompetenceDTO() {
     }
 
-    public CompetenceDTO(Long id, String nom, List<SousCompetenceDTO> sousCompetences, boolean acquise) {
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public CompetenceDTO(Long id, String nom, String description, List<SousCompetenceDTO> sousCompetences, boolean acquise) {
         this.id = id;
         this.nom = nom;
+        this.description = description;
         this.sousCompetences = sousCompetences;
         this.acquise = acquise;
     }
+
 }
 
