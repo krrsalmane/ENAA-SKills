@@ -2,10 +2,9 @@ package com.s.demo1.controller;
 
 import com.s.demo1.DTO.CompetenceDTO;
 import com.s.demo1.service.CompetenceService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/competences")
@@ -20,5 +19,10 @@ public class CompetenceController {
     @PostMapping
     public CompetenceDTO create(@RequestBody CompetenceDTO dto) {
         return competenceService.createCompetence(dto);
+    }
+
+    @GetMapping
+    public List<CompetenceDTO> getAll() {
+        return competenceService.getAllCompetences();
     }
 }

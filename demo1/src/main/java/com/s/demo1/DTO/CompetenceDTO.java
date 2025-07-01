@@ -44,6 +44,14 @@ public class CompetenceDTO {
         this.acquise = acquise;
     }
 
+    public CompetenceDTO() {
+    }
 
+    public CompetenceDTO(Long id, String nom, List<SousCompetenceDTO> sousCompetences, boolean acquise) {
+        this.id = id;
+        this.nom = nom;
+        this.sousCompetences = sousCompetences;
+        this.acquise = acquise;
+    }
 }
 

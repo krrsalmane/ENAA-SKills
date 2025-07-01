@@ -46,4 +46,22 @@ public class CompetenceService {
         );
         return response;
     }
+
+    public List<CompetenceDTO> getAllCompetences() {
+        return competenceRepository.findAll().stream().map(competence -> {
+            List<SousCompetenceDTO> sousDtos = competence.getSousCompetences().stream()
+                    .map(sc -> new SousCompetenceDTO(sc.getId(), sc.getDescription(), sc.isValidee()))
+                    .collect(Collectors.toList());
+
+            boolean isAcquired = competence.getSousCompetences().stream().allMatch(SousCompetence::isValidee);
+
+            return new CompetenceDTO(
+                    competence.getId(),
+                    competence.getNom(),
+                    sousDtos,
+                    isAcquired
+            );
+        }).collect(Collectors.toList());
+    }
+
 }
