@@ -25,4 +25,10 @@ public class CompetenceController {
     public List<CompetenceDTO> getAll() {
         return competenceService.getAllCompetences();
     }
+
+    @GetMapping("/{id}")
+    public CompetenceDTO getOne(@PathVariable Long id) {
+        return competenceService.getCompetenceById(id);
+    }
+
 }

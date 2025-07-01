@@ -64,4 +64,18 @@ public class CompetenceService {
         }).collect(Collectors.toList());
     }
 
+    public CompetenceDTO getCompetenceById(Long id) {
+        Competence competence = competenceRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Competence not found"));
+
+        List<SousCompetenceDTO> sousDtos = competence.getSousCompetences().stream()
+                .map(sc -> new SousCompetenceDTO(sc.getId(), sc.getDescription(), sc.isValidee()))
+                .collect(Collectors.toList());
+
+        boolean isAcquired = competence.getSousCompetences().stream().allMatch(SousCompetence::isValidee);
+
+        return new CompetenceDTO(competence.getId(), competence.getNom(), sousDtos, isAcquired);
+    }
+
+
 }
