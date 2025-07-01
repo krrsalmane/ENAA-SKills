@@ -31,4 +31,9 @@ public class CompetenceController {
         return competenceService.getCompetenceById(id);
     }
 
+    @PutMapping("/{id}")
+    public CompetenceDTO update(@PathVariable Long id, @RequestBody CompetenceDTO dto) {
+        return competenceService.updateCompetence(id, dto);
+    }
+
 }

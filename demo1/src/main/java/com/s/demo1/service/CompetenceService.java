@@ -77,5 +77,22 @@ public class CompetenceService {
         return new CompetenceDTO(competence.getId(), competence.getNom(), sousDtos, isAcquired);
     }
 
+    public CompetenceDTO updateCompetence(Long id, CompetenceDTO dto) {
+        Competence competence = competenceRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Competence not found"));
+
+        competence.setNom(dto.getNom());
+
+        Competence updated = competenceRepository.save(competence);
+
+        List<SousCompetenceDTO> sousDtos = updated.getSousCompetences().stream()
+                .map(sc -> new SousCompetenceDTO(sc.getId(), sc.getDescription(), sc.isValidee()))
+                .collect(Collectors.toList());
+
+        boolean isAcquired = updated.getSousCompetences().stream().allMatch(SousCompetence::isValidee);
+
+        return new CompetenceDTO(updated.getId(), updated.getNom(), sousDtos, isAcquired);
+    }
+
 
 }
