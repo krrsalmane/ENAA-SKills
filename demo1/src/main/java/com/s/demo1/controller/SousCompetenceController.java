@@ -42,7 +42,10 @@ public class SousCompetenceController {
             return sousCompetenceService.update(id, dto);
         }
 
-
+        @DeleteMapping("/{id}")
+        public void delete(@PathVariable Long id) {
+            sousCompetenceService.delete(id);
+        }
     }
 
 

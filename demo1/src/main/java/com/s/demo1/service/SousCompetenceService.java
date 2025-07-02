@@ -66,7 +66,9 @@ public class SousCompetenceService {
         return new SousCompetenceDTO(updated.getId(), updated.getDescription(), updated.isValidee());
     }
 
-
+    public void delete(Long id) {
+        sousCompetenceRepository.deleteById(id);
+    }
 }
 
 
