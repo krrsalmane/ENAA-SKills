@@ -7,7 +7,7 @@ public class SousCompetenceDTO {
     private Long id;
     private String description;
     private boolean validee;
-
+    private Long competenceId;
     public Long getId() {
         return id;
     }
@@ -39,5 +39,13 @@ public class SousCompetenceDTO {
     }
 
     public SousCompetenceDTO() {
+    }
+
+    public Long getCompetenceId() {
+        return competenceId;
+    }
+
+    public void setCompetenceId(Long competenceId) {
+        this.competenceId = competenceId;
     }
 }

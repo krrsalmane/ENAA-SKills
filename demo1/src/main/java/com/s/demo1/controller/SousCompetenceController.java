@@ -1,6 +1,9 @@
 package com.s.demo1.controller;
+import com.s.demo1.DTO.SousCompetenceDTO;
 import com.s.demo1.service.SousCompetenceService;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -17,4 +20,14 @@ public class SousCompetenceController {
         public void updateValidation(@PathVariable Long id, @RequestParam boolean validee) {
             sousCompetenceService.updateValidationStatus(id, validee);
         }
-}
+
+
+        @PostMapping
+        public SousCompetenceDTO create(@RequestBody SousCompetenceDTO dto) {
+            return sousCompetenceService.create(dto);
+        }
+
+
+    }
+
+
