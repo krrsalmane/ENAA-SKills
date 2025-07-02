@@ -1,10 +1,9 @@
 package com.s.demo1.controller;
-
 import com.s.demo1.DTO.CompetenceDTO;
 import com.s.demo1.service.CompetenceService;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
+
 
 @RestController
 @RequestMapping("/api/competences")
