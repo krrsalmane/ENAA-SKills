@@ -32,6 +32,11 @@ public class SousCompetenceController {
             return sousCompetenceService.getAll();
         }
 
+        @GetMapping("/{id}")
+        public SousCompetenceDTO getById(@PathVariable Long id) {
+            return sousCompetenceService.getById(id);
+        }
+
 
     }
 

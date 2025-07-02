@@ -49,6 +49,12 @@ public class SousCompetenceService {
                 .collect(Collectors.toList());
     }
 
+    public SousCompetenceDTO getById(Long id) {
+        SousCompetence sc = sousCompetenceRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Sub-competence not found"));
+        return new SousCompetenceDTO(sc.getId(), sc.getDescription(), sc.isValidee());
+    }
+
 
 }
 
