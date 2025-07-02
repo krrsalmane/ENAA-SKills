@@ -43,6 +43,12 @@ public class SousCompetenceService {
         return new SousCompetenceDTO(saved.getId(), saved.getDescription(), saved.isValidee());
     }
 
+    public List<SousCompetenceDTO> getAll() {
+        return sousCompetenceRepository.findAll().stream()
+                .map(sc -> new SousCompetenceDTO(sc.getId(), sc.getDescription(), sc.isValidee()))
+                .collect(Collectors.toList());
+    }
+
 
 }
 

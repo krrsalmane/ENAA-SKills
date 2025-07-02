@@ -27,6 +27,11 @@ public class SousCompetenceController {
             return sousCompetenceService.create(dto);
         }
 
+        @GetMapping
+        public List<SousCompetenceDTO> getAll() {
+            return sousCompetenceService.getAll();
+        }
+
 
     }
 
