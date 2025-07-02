@@ -26,9 +26,26 @@ public class SousCompetenceService {
         SousCompetence sc = sousCompetenceRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Sub-competence with ID " + id + " not found"));
 
+        // Update the sub-competence status
         sc.setValidee(validee);
         sousCompetenceRepository.save(sc);
+
+        // Get the parent competence
+        Competence competence = sc.getCompetence();
+
+        // Count total and validated sub-competences
+        int total = competence.getSousCompetences().size();
+        long validated = competence.getSousCompetences().stream()
+                .filter(SousCompetence::isValidee)
+                .count();
+
+        // If more than half are validated, mark as acquired
+        boolean isAcquired = validated > (total / 2);
+
+        competence.setAcquise(isAcquired);
+        competenceRepository.save(competence);
     }
+
 
     public SousCompetenceDTO create(SousCompetenceDTO dto) {
         Competence competence = competenceRepository.findById(dto.getCompetenceId())

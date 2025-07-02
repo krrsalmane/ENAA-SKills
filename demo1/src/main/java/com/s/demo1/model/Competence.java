@@ -17,6 +17,8 @@ public class Competence {
 
     private String nom;
     private String description;
+    private boolean acquise;
+
 
     @OneToMany(mappedBy = "competence", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<SousCompetence> sousCompetences;
@@ -51,5 +53,13 @@ public class Competence {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public boolean isAcquise() {
+        return acquise;
+    }
+
+    public void setAcquise(boolean acquise) {
+        this.acquise = acquise;
     }
 }
