@@ -37,6 +37,11 @@ public class SousCompetenceController {
             return sousCompetenceService.getById(id);
         }
 
+        @PutMapping("/{id}")
+        public SousCompetenceDTO update(@PathVariable Long id, @RequestBody SousCompetenceDTO dto) {
+            return sousCompetenceService.update(id, dto);
+        }
+
 
     }
 

@@ -55,6 +55,17 @@ public class SousCompetenceService {
         return new SousCompetenceDTO(sc.getId(), sc.getDescription(), sc.isValidee());
     }
 
+    public SousCompetenceDTO update(Long id, SousCompetenceDTO dto) {
+        SousCompetence sc = sousCompetenceRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Sub-competence not found"));
+
+        sc.setDescription(dto.getDescription());
+        sc.setValidee(dto.isValidee());
+
+        SousCompetence updated = sousCompetenceRepository.save(sc);
+        return new SousCompetenceDTO(updated.getId(), updated.getDescription(), updated.isValidee());
+    }
+
 
 }
 
