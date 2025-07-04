@@ -2,7 +2,6 @@ package com.s.demo1.controller;
 import com.s.demo1.DTO.SousCompetenceDTO;
 import com.s.demo1.service.SousCompetenceService;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 

@@ -8,5 +8,5 @@ import java.util.Map;
 
 public class ProgressReportDTO {
     private String nomApprenant;
-    private Map<String, Boolean> etatCompetences; // ex: "C1": true
+    private Map<String, Boolean> etatCompetences;
 }
